@@ -3,7 +3,9 @@ import InputField from '@/components/InputField'
 import axiosClient from '@/lib/axiosClient';
 import useUserStore from '@/store/userStore';
 import { LucideSparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { LucideArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -66,7 +68,7 @@ export default function page() {
             return;
         }
         try {
-            let response = axiosClient.post('/campaign/new/', { ...campaignData, quote })
+            let response = axiosClient.post('/campaign/new/', { ...campaignData, 'budget':quote })
             toast.promise(response,
                 {
                     loading: "Submitting campaign...",
@@ -132,6 +134,7 @@ export default function page() {
                     </section>
                 </FormProvider>
             </div>
+            <Link className={"btn btn-primary btn-soft rounded-full absolute bottom-16 right-10"} href={"/login"}>Login <ArrowRight size={16} /></Link>
         </section>
 
     )

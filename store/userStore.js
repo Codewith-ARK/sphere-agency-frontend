@@ -32,7 +32,7 @@ const useUserStore = create(
         }
       },
 
-      logout: async () => {
+      logout: () => {
         // Optionally call your API to invalidate the token
         // await axios.post(`${API_BASE_URL}/auth/logout`, {}, { headers: { Authorization: `Bearer ${get().token}` } });
         try {

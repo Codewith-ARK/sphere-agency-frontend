@@ -43,27 +43,36 @@ export default function TaskPage() {
     const currentStep = statusSteps.indexOf(task.status);
 
     return (
-        <div className="p-6">
+        <div className="flex flex-col gap-6">
             <section>
                 <h2 className="text-lg font-semibold mb-4">Task Details</h2>
-
-            </section>
-            <h2 className="text-lg font-semibold mb-4">Task Progress</h2>
-            <div className="flex gap-3">
-                {statusSteps.map((step, idx) => (
-                    <label key={step} className="flex items-center gap-2">
-                        <input
-                            type="checkbox"
-                            checked={idx <= currentStep}
-                            disabled={true} // disable *all* checkboxes
-                            onChange={() => updateStatus(step)}
-                            className={`checkbox ${idx === currentStep ? "checkbox-primary" : "checkbox-success"}`}
-                        />
-                        <span className={`capitalize ${idx === currentStep ? "font-bold text-primary" : ""}`}>
-                            {step.replace("_", " ")}
+                <div className='grid grid-cols-3 gap-4'>
+                    {Object.entries(task).map(([key, value]) => (
+                        <span>
+                            <p className='text-xs text-gray-400 uppercase'>{key}</p>
+                            <p className='font-medium'>{value}</p>
                         </span>
-                    </label>
-                ))}
+                    ))}
+                </div>
+            </section>
+            <div className="flex flex-col gap-3">
+                <h2 className="text-lg font-semibold">Task Progress</h2>
+                <div className='flex flex-col gap-3'>
+                    {statusSteps.map((step, idx) => (
+                        <label key={step} className="flex items-center gap-2">
+                            <input
+                                type="checkbox"
+                                checked={idx <= currentStep}
+                                disabled={true} // disable *all* checkboxes
+                                onChange={() => updateStatus(step)}
+                                className={`checkbox ${idx === currentStep ? "checkbox-primary" : "checkbox-success"}`}
+                            />
+                            <span className={`capitalize ${idx === currentStep ? "font-bold text-primary" : ""}`}>
+                                {step.replace("_", " ")}
+                            </span>
+                        </label>
+                    ))}
+                </div>
             </div>
 
             {/* For moving forward only */}

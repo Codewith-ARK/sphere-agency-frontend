@@ -38,16 +38,16 @@ export default function Sidebar({ children }) {
                 <ul className="menu bg-base-200 border-r border-r-gray-300 dark:border-r-gray-700 text-base-content min-h-full w-80 p-4 justify-between">
                     <div>
                         <h1 className='text-2xl mb-12'>Sphere Agency</h1>
-                        <li><Link href={"/user/dashboard"}><Home size={18} /> Dashboard</Link></li>
-                        <li><Link href={"/user/project/"}><File size={18} /> Projects</Link></li>
-                        <li><Link className={""} href={"/user/task/"}><ListCheck size={18} /> Tasks</Link></li>
+                        <li><Link href={"/dashboard"}><Home size={18} /> Dashboard</Link></li>
+                        <li><Link href={"/campaign"}><File size={18} /> Campaigns</Link></li>
+                        <li><Link className={""} href={"/task"}><ListCheck size={18} /> Tasks</Link></li>
                         {
                             user?.role === "employee" &&
                             (
                                 <li><Link className={""} href={"/employee/skill/"}><FileCheck2 size={18} /> Skills</Link></li>
                             )
                         }
-                        {
+                        {/* {
                             user?.role === "admin" || user?.role === "superadmin" &&
                             (
                                 <>
@@ -55,7 +55,7 @@ export default function Sidebar({ children }) {
                                     <li><Link className={""} href={"/admin/users/"}><UserCog2 size={18}/> Manage Users</Link></li>
                             </>
                             )
-                        }
+                        } */}
                     </div>
                 </ul>
             </div>

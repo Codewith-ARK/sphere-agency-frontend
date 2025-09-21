@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navigation/Navbar";
 import { Toaster } from "sonner";
+import CreateCampaignButton from "@/components/ui/CreateCampaignButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       >
         {children}
         <Toaster richColors={true}/>
+        <CreateCampaignButton />
       </body>
     </html>
   );

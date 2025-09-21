@@ -2,11 +2,15 @@ import React from 'react'
 
 export default function StatusBadge({ status }) {
     const badgeColor = (() => {
-        switch (status) {
+        switch (status.toLowerCase()) {
             case "pending":
-                return "";
+                return "bg-gray-200";
+            case 'in_progress':
+                return 'bg-orange-300'
             case "approved":
                 return "badge-success";
+            case 'completed':
+                return 'badge-success';
             case "rejected":
                 return "badge-error";
             default:

@@ -2,6 +2,7 @@ import React from 'react'
 import TextWithLabel from '../ui/TextWithLabel';
 import Link from 'next/link';
 import { LucideArrowRight } from 'lucide-react';
+import StatusBadge from '../ui/StatusBadge';
 
 export default function CampaignTask({ taskData }) {
     const {
@@ -27,7 +28,8 @@ export default function CampaignTask({ taskData }) {
 
     return (
         <div className='py-6 px-4 border rounded-xl'>
-            <div className='flex justify-end'>
+            <div className='flex justify-between mb-4'>
+                <StatusBadge status={status}/>
                 <Link className='btn btn-soft btn-xs rounded-full mt-auto' href={`/task/${id}/`}>View details <LucideArrowRight size={16} /></Link>
             </div>
             {

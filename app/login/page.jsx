@@ -8,7 +8,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 export default function page() {
-    const { login } = useUserStore();
+    const { login, loading } = useUserStore();
     const params = useSearchParams();
     const source = params.get("source");
     console.log(source)
@@ -45,14 +45,28 @@ export default function page() {
                     label={"Email"}
                     type={"email"}
                     name={'email'}
+                    placeholder={'example@email.com'}
+                    isRequired={true}
                 />
 
                 <InputField
                     label={"Password"}
                     type={showPass ? 'text' : 'password'}
                     name={'password'}
+                    placeholder={'Password'}
+                    isRequired={true}
                 />
-                <button type="submit" className='btn btn-primary w-full rounded-full'>Login</button>
+                <label className="label cursor-pointer w-full justify-between">
+                    <span className="label-text">Show Password</span>
+                    <input onChange={() => setShowPass(prev => !prev)} type="checkbox" className="checkbox" defaultChecked={showPass}/>
+                </label>
+                <button type="submit" className='btn btn-primary w-full rounded-full'>
+                    {
+                        loading 
+                        ? (<span className='loading loading-spinner'></span>)
+                        : "Login"
+                    }
+                </button>
                 <Link href={"/register"} className='btn btn-outline btn-primary w-full rounded-full'>Register</Link>
             </form>
         </FormProvider>

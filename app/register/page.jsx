@@ -13,7 +13,7 @@ export default function page() {
 
     const [showPass, setShowPass] = useState(false);
     const [loading, setLoading] = useState(false);
-    
+
     const roleOptions = [
         { value: 'client', label: 'Client' },
         { value: 'employee', label: 'Employee' },
@@ -32,6 +32,7 @@ export default function page() {
                 error: 'Error.'
             }
         )
+        setLoading(false)
     }
 
     return (
@@ -60,13 +61,23 @@ export default function page() {
                         type={showPass ? 'text' : 'password'}
                         isRequired={true}
                     />
+                    <label className="label cursor-pointer w-full justify-between">
+                        <span className="label-text">Show Password</span>
+                        <input onChange={() => setShowPass(prev => !prev)} type="checkbox" className="checkbox" defaultChecked={showPass} />
+                    </label>
                     <SelectInputField
                         label={"Role"}
                         name={'role'}
                         options={roleOptions}
                         isRequired={true}
                     />
-                    <button disabled={loading} type="submit" className='btn btn-primary w-full rounded-full'>Register</button>
+                    <button disabled={loading} type="submit" className='btn btn-primary w-full rounded-full'>
+                        {
+                            loading 
+                            ? (<span className='loading loading-spinner'></span>)
+                            : "Register"
+                        }
+                    </button>
                     <Link href={"/login"} className='btn btn-outline btn-primary w-full rounded-full'>Login</Link>
                 </form>
             </FormProvider>

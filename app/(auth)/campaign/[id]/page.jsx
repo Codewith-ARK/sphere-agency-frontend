@@ -59,7 +59,7 @@ export default function page() {
                     <>
                         <section className='my-6'>
                             <h2 className='text-2xl font-bold mb-6'>Progress ({`${projectProgress}%`})</h2>
-                            <progress className="progress" value={projectProgress} max={100}></progress>
+                            <progress className="progress progress-success" value={projectProgress} max={100}></progress>
                         </section>
                         <section>
                             <h2 className='text-2xl font-bold mb-6'>Tasks ({`${campaign.tasks.length}`})</h2>
