@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-export default function page() {
+export default function Page() {
 
     const [skills, setSkills] = useState(null);
     const [loading, setLoading] = useState(false);

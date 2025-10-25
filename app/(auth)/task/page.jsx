@@ -5,7 +5,7 @@ import LoadingScreen from '@/components/skeleton/LoadingScreen';
 import axiosClient from '@/lib/axiosClient'
 import React, { useEffect, useState } from 'react'
 
-export default function page() {
+export default function Page() {
 
     const [tasks, setTasks] = useState(null);
 

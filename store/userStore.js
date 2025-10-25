@@ -26,9 +26,10 @@ const useUserStore = create(
           return response;
         } catch (err) {
           set({
-            error: err.response?.data?.message || err.message || "Login failed",
+            error: err,
             loading: false,
           });
+          return err;
         }
       },
 

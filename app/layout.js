@@ -1,18 +1,18 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navigation/Navbar";
 import { Toaster } from "sonner";
 import CreateCampaignButton from "@/components/ui/CreateCampaignButton";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
   subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const sans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700', '800']
+})
 
 export const metadata = {
   title: "Sphere Agency",
@@ -23,10 +23,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${outfit.className} ${sans.className} antialiased`}
       >
         {children}
-        <Toaster richColors={true}/>
+        <Toaster richColors={true} position="top-center" />
         <CreateCampaignButton />
       </body>
     </html>

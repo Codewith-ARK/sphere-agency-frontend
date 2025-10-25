@@ -7,6 +7,8 @@ export default function StatusBadge({ status }) {
                 return "bg-gray-200";
             case 'in_progress':
                 return 'bg-orange-300'
+            case 'generating':
+                return 'bg-orange-300'
             case "approved":
                 return "badge-success";
             case 'completed':

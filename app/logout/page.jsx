@@ -4,15 +4,16 @@ import useUserStore from '@/store/userStore'
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
 
-export default function page() {
+export default function Page() {
 
     const { logout } = useUserStore();
     const router = useRouter();
 
     setTimeout(()=>{
         logout()
+        localStorage.removeItem('user-storage');
         router.push('/')
-    },3000)
+    },2000)
 
     return (
         <div className='h-screen'>

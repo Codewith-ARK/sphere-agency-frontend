@@ -2,11 +2,13 @@
 import Campaign from '@/components/campaign/Campaign';
 import CampaignTask from '@/components/campaign/CampaignTask';
 import LoadingScreen from '@/components/skeleton/LoadingScreen';
+import Tab from '@/components/tab/Tab';
+import TaskSection from '@/components/tab/TaskSection';
 import axiosClient from '@/lib/axiosClient'
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
-export default function page() {
+export default function Page() {
 
     const { id } = useParams();
     const [campaign, setCampaign] = useState(null);
@@ -15,7 +17,6 @@ export default function page() {
     useEffect(() => {
         async function fetch() {
             const { data } = await axiosClient.get(`/campaign/${id}/`)
-            console.log(data);
             setCampaign(data);
         }
         fetch();
@@ -61,12 +62,7 @@ export default function page() {
                             <h2 className='text-2xl font-bold mb-6'>Progress ({`${projectProgress}%`})</h2>
                             <progress className="progress progress-success" value={projectProgress} max={100}></progress>
                         </section>
-                        <section>
-                            <h2 className='text-2xl font-bold mb-6'>Tasks ({`${campaign.tasks.length}`})</h2>
-                            <div className='grid grid-cols-3 gap-4'>
-                                {campaign?.tasks.map((item, idx) => <CampaignTask taskData={item} key={idx} />)}
-                            </div>
-                        </section>
+                        <Tab campaign={campaign}/>
                     </>
                 )
             }

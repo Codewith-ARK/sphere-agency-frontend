@@ -47,15 +47,14 @@ export default function Sidebar({ children }) {
                                 <li><Link className={""} href={"/employee/skill/"}><FileCheck2 size={18} /> Skills</Link></li>
                             )
                         }
-                        {/* {
+                        {
                             user?.role === "admin" || user?.role === "superadmin" &&
                             (
                                 <>
-                                    <li><Link className={''} href={"/admin/reports"}><FileChartColumn size={18} /> Reports & Analytics</Link></li>
-                                    <li><Link className={""} href={"/admin/users/"}><UserCog2 size={18}/> Manage Users</Link></li>
-                            </>
+                                    <li><Link className={""} href={"/admin/users/"}><UserCog2 size={18} /> Manage Users</Link></li>
+                                </>
                             )
-                        } */}
+                        }
                     </div>
                 </ul>
             </div>

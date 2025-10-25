@@ -16,7 +16,7 @@ export default function UserProfileDropdown() {
                 <Avatar firstName={user?.first_name[0]} />
             </button>
             <ul tabIndex={0} className="dropdown-content menu bg-base-300 rounded-box z-1 w-40 p-2 shadow-sm border border-base-100">
-                <li><Link href={`/user/profile/`} className='text-base-content'>View profile</Link></li>
+                <li><Link href={`/profile/`} className='text-base-content'>View profile</Link></li>
                 <li></li>
                 <li><Link href={`/logout`} className='text-error'><LogOut size={14} /> Logout</Link></li>
             </ul>

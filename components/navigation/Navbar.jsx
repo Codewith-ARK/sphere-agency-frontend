@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { Menu } from 'lucide-react'
 import { SidebarToggle } from './Sidebar'
+import { ArrowRight } from 'lucide-react'
 
 export default function Navbar({ heading }) {
   const user = useUserStore(state => state.user);
@@ -42,7 +43,7 @@ export default function Navbar({ heading }) {
         {
           isAuthenticated
             ? <UserProfileDropdown />
-            : <Link href={"/"} className='btn btn-primary'>Login</Link>
+            : <Link href={"/login"} className='btn btn-primary rounded-full'>Login <ArrowRight size={16}/></Link>
         }
       </div>
     </div>

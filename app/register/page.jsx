@@ -3,13 +3,15 @@ import SelectInputField from '@/components/form/SelectInputField';
 import InputField from '@/components/InputField'
 import axiosClient from '@/lib/axiosClient';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { toast } from 'sonner';
 
-export default function page() {
+export default function Page() {
     const methods = useForm();
-    const { handleSubmit } = methods;
+    const router = useRouter();
+    const { handleSubmit, reset } = methods;
 
     const [showPass, setShowPass] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -24,21 +26,33 @@ export default function page() {
 
     async function onSubmit(data) {
         setLoading(true);
-        let res = axiosClient.post('/user/new/', data);
-        toast.promise(res,
-            {
-                loading: 'Submitting...',
-                success: 'Registration Successful',
-                error: 'Error.'
-            }
-        )
-        setLoading(false)
+        try {
+
+            let res = axiosClient.post('/user/new/', data);
+            toast.promise(res,
+                {
+                    loading: 'Submitting...',
+                    success: 'Registration Successful',
+                    error: 'Error.'
+                }
+            )
+            reset()
+            res = await res;
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
         <div className=''>
             <FormProvider {...methods}>
-                <form className='h-screen mx-auto flex flex-col justify-center gap-2 max-w-sm' onSubmit={handleSubmit(onSubmit)}>
+                <form className='min-h-screen mx-auto flex flex-col justify-center gap-2 max-w-sm' onSubmit={handleSubmit(onSubmit)}>
+                    <div className='text-center'>
+                        <h2 className='text-3xl font-bold'>Register</h2>
+                        <p className='text-gray-400'>Create a new account</p>
+                    </div>
                     <InputField
                         label={"First Name"}
                         name={"first_name"}
@@ -73,9 +87,9 @@ export default function page() {
                     />
                     <button disabled={loading} type="submit" className='btn btn-primary w-full rounded-full'>
                         {
-                            loading 
-                            ? (<span className='loading loading-spinner'></span>)
-                            : "Register"
+                            loading
+                                ? (<span className='loading loading-spinner'></span>)
+                                : "Register"
                         }
                     </button>
                     <Link href={"/login"} className='btn btn-outline btn-primary w-full rounded-full'>Login</Link>

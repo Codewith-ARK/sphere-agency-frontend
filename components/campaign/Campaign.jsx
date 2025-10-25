@@ -11,6 +11,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import StatusBadge from '../ui/StatusBadge';
 import useUserStore from '@/store/userStore';
+import { usePathname } from 'next/navigation';
 
 export default function Campaign({ campaignData }) {
     const {
@@ -20,6 +21,7 @@ export default function Campaign({ campaignData }) {
     const [status, setStatus] = useState(campaignData.status);
     const [loading, setLoading] = useState(false);
     const { user } = useUserStore();
+    const pathname = usePathname();
 
     const fieldLabels = [
         { label: 'Type', value: type || 'N/A' },
@@ -40,7 +42,7 @@ export default function Campaign({ campaignData }) {
     return (
         <div className='border px-4 py-6 rounded-md space-y-4'>
             <div className='flex justify-between'>
-                <h2>{title}</h2>
+                <h2 className='font-medium text-lg'>{title}</h2>
                 <div className='flex gap-3'>
                     <p className='text-xs opacity-40'>{formatDate(created_at)}</p>
                     {/* <span className='badge badge-sm badge-soft'>{status}</span> */}
@@ -61,6 +63,7 @@ export default function Campaign({ campaignData }) {
                         <CampaignApproval id={id} setStatus={setStatus} />
                     )
                     : (
+                        !pathname.includes('/campaign/') &&
                         <div className='flex justify-end'>
                             <Link href={`/campaign/${id}`} className='btn btn-soft rounded-full'>View campaign <LucideArrowRight size={16} /></Link>
                         </div >
@@ -85,7 +88,6 @@ function CampaignApproval({ id, setStatus }) {
                 error: 'Error updating status'
             })
             response = await response;
-            console.log(response.data.status)
             setStatus(response.data.status);
         } catch (e) {
             console.error(e);

@@ -9,7 +9,7 @@ import axiosClient from '@/lib/axiosClient'
 import useUserStore from '@/store/userStore';
 import React, { useEffect, useState } from 'react'
 
-export default function page() {
+export default function Page() {
 
     const [dashboard, setDashboard] = useState(null);
     const { user } = useUserStore();
