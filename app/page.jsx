@@ -1,6 +1,5 @@
 'use client'
 import SelectInputField from '@/components/form/SelectInputField';
-import QuoteSection from '@/components/homepage/CampaignQuote';
 import InputField from '@/components/InputField'
 import axiosClient from '@/lib/axiosClient';
 import useUserStore from '@/store/userStore';
