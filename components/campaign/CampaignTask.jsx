@@ -27,8 +27,8 @@ export default function CampaignTask({ taskData }) {
     ];
 
     const assigneeDetails = {
-        email: assigned_to.email,
-        name: `${assigned_to.first_name} ${assigned_to.last_name}`
+        email: assigned_to?.email || 'N/A',
+        name: `${assigned_to?.first_name || 'N/A'} ${assigned_to?.last_name || ''}`
     }
 
 

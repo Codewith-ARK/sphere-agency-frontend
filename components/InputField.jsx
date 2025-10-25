@@ -11,7 +11,7 @@ export default function InputField({ name, label, type, placeholder, className, 
             <legend className="fieldset-legend">{label}{isRequired && <p className='text-error'>*</p>}</legend>
             <input
                 type={type}
-                className={`input w-full ${className}`}
+                className={`input w-full ${className || ''}`}
                 placeholder={placeholder}
                 {...register(name, { required: isRequired ? 'This field is required' : false, ...rules })}
             />

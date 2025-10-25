@@ -10,7 +10,7 @@ export default function SelectInputField({ label, name, options, className, isRe
             <legend className="fieldset-legend">{label}{isRequired && <span className='text-error'>*</span>}</legend>
             <select
                 {...register(name, { required: isRequired ? 'This field is required' : false, ...rules })}
-                className={`select w-full ${className}${error && 'select-error' || ""}`}
+                className={`select w-full ${className || ''}${error && 'select-error' || ""}`}
             >
                 {/* <option value="" disabled>Select an option</option> */}
                 {options.map((item, index) => (

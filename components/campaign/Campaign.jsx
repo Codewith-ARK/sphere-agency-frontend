@@ -38,9 +38,13 @@ export default function Campaign({ campaignData }) {
         return dayjs(rawDate).fromNow();
     }
 
+    const authorDetails = {
+        email: campaignData.created_by.email,
+        name: `${campaignData.created_by.first_name} ${campaignData.created_by.last_name}`
+    }
 
     return (
-        <div className='border px-4 py-6 rounded-md space-y-4'>
+        <div className='border px-4 py-6 rounded-md space-y-3'>
             <div className='flex justify-between'>
                 <h2 className='font-medium text-lg'>{title}</h2>
                 <div className='flex gap-3'>
@@ -49,11 +53,12 @@ export default function Campaign({ campaignData }) {
                     <StatusBadge status={status} />
                 </div>
             </div>
-            <div className='grid grid-cols-4 gap-4'>
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
                 {
                     fieldLabels.map((item, idx) => <TextWithLabel label={item.label} text={item.value} key={idx} />)
                 }
             </div>
+            <CampaignAuthor email={authorDetails.email} name={authorDetails.name} />
             {
 
             }
@@ -70,6 +75,25 @@ export default function Campaign({ campaignData }) {
                     )
             }
         </div >
+    )
+}
+
+function CampaignAuthor({ name, email }) {
+    return (
+        <section className='flex items-end flex-col'>
+            <span className='text-gray-400 text-xs'>Created By</span>
+            <section className='py-2 flex gap-3 items-center'>
+                <div>
+                    <p className='text-right text-sm font-medium'>{name}</p>
+                    <p className='text-right text-xs text-gray-400'>{email}</p>
+                </div>
+                <div className="avatar avatar-placeholder">
+                    <div className="bg-neutral text-neutral-content w-8 rounded-full">
+                        <span className="text-xs">UI</span>
+                    </div>
+                </div>
+            </section>
+        </section>
     )
 }
 
