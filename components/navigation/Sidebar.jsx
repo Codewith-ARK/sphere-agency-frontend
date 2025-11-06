@@ -19,7 +19,7 @@ import { UserCog2 } from 'lucide-react'
 
 export default function Sidebar({ children }) {
 
-    const user = useUserStore(state => state.user);
+    const { user } = useUserStore();
 
     return (
         <div className="drawer lg:drawer-open">
@@ -48,7 +48,7 @@ export default function Sidebar({ children }) {
                             )
                         }
                         {
-                            user?.role === "admin" || user?.role === "superadmin" &&
+                            (user?.role == "admin" || user?.role == "superadmin") &&
                             (
                                 <>
                                     <li><Link className={""} href={"/admin/users/"}><UserCog2 size={18} /> Manage Users</Link></li>

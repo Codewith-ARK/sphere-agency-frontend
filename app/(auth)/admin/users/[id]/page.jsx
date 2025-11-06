@@ -37,7 +37,7 @@ export default function Page() {
                 <TextWithLabel label={"Role"} text={userData.role} />
             </div>
             {userData?.employee_profile && <EmployeeProfile data={userData.employee_profile} />}
-            {userData.role == 'client' && <ClientProfile data={userData}/>}
+            {userData.role == 'client' && <ClientProfile data={userData} />}
         </section>
     )
 }
@@ -56,16 +56,20 @@ function EmployeeProfile({ data }) {
     const { tasks, skills } = data;
     return (
         <div className='flex flex-col gap-6'>
+            {/* {(skills?.length > 0) && ( */}
             <section className='flex flex-col gap-4'>
-                <h2 className='text-2xl font-medium'>Skills ({skills.split(',').length})</h2>
+                <h2 className='text-2xl font-medium'>Skills ({skills?.split(',').length || 0})</h2>
                 <div className='p-4 border rounded-md space-x-4'>
-                    {skills.split(',').map((item, idx) => {
-                        if (item === "") ""
-                        return <span key={idx} className='badge badge-accent badge-lg rounded-full justify-center'>{item}</span>
-                    })}
+                    {(skills?.length > 0)
+                        ? (skills?.split(',').map((item, idx) => {
+                            if (item === "") ""
+                            return <span key={idx} className='badge badge-accent badge-lg rounded-full justify-center'>{item}</span>
+                        })
+                        ) : "No skills..."
+                    }
                 </div>
             </section>
-
+            {/* )} */}
             <section className='flex flex-col gap-4'>
                 <h2 className='text-2xl font-medium'>Tasks ({tasks.length})</h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
