@@ -40,7 +40,7 @@ export default function Campaign({ campaignData }) {
 
     const authorDetails = {
         email: campaignData.created_by.email,
-        name: `${campaignData.created_by.first_name} ${campaignData.created_by.last_name}`
+        name: campaignData.created_by.name,
     }
 
     return (

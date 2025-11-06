@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^4.3.0",
     "axios": "^1.12.2",
     "boring-avatars": "^2.0.1",
     "dayjs": "^1.11.18",

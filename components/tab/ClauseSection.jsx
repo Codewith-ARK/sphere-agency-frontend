@@ -5,13 +5,14 @@ import axiosClient from '@/lib/axiosClient';
 import { toast } from 'sonner';
 import useUserStore from '@/store/userStore';
 import { useParams } from 'next/navigation';
+import GenerateContractButton from '../contract/ContractPDFTemplate';
 
 export default function ClauseSection({ contractData }) {
 
     const [loading, setLoading] = useState(false);
     const [clauses, setClauses] = useState(contractData?.clauses || null);
-    const {id} = useParams();
-    const {user} = useUserStore();
+    const { id } = useParams();
+    const { user } = useUserStore();
 
     async function generateContract() {
         try {
@@ -33,6 +34,9 @@ export default function ClauseSection({ contractData }) {
 
     return (
         <div className='flex flex-col gap-6'>
+            <div className='flex justify-end'>
+                <GenerateContractButton props={contractData} />
+            </div>
             {
                 user.role.includes('admin', 'superadmin') && !clauses &&
                 <div className='flex justify-end'>
