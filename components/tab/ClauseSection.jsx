@@ -44,10 +44,12 @@ export default function ClauseSection({ contractData }) {
                 </div>
             }
             {clauses?.map((item, idx) => (
-                <div key={idx} className='py-6 px-4 flex flex-col gap-3 border rounded-md'>
+                <div key={idx} tabIndex={idx} className='collapse collapse-plus py-6 px-4 gap-3 border rounded-md'>
                     <TextWithLabel className={"text-xl font-bold"} label={"Title"} text={item.title} />
-                    <TextWithLabel label={"Text"} text={item.text} />
-                    <TextWithLabel label={"Explanation"} text={item.explanation} />
+                    <div className="collapse-content p-0 flex flex-col gap-3">
+                        <TextWithLabel label={"Text"} text={item.text} />
+                        <TextWithLabel label={"Explanation"} text={item.explanation} />
+                    </div>
                 </div>
             ))}
         </div>

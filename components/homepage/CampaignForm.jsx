@@ -7,7 +7,7 @@ import { LucideSparkles } from 'lucide-react';
 import SelectInputField from '../form/SelectInputField';
 import { adTypeOptions, platformOptions } from '@/data/options';
 import { toast } from 'sonner';
-import { register } from 'next/dist/next-devtools/userspace/pages/pages-dev-overlay-setup';
+import { motion } from 'motion/react';
 
 function CampaignFormHeader() {
     const { user } = useUserStore();
@@ -26,7 +26,7 @@ function CampaignFormHeader() {
 }
 
 
-export default function CampaignForm({submitHandler}) {
+export default function CampaignForm({ submitHandler }) {
     const { register, handleSubmit, formState: { errors } } = useFormContext();
     const [loading, setLoading] = useState(false);
 
@@ -40,7 +40,7 @@ export default function CampaignForm({submitHandler}) {
         try {
             setLoading(true);
             submitHandler(params);
-        } catch(err){
+        } catch (err) {
             console.error(err);
         } finally {
             setLoading(false);
@@ -49,7 +49,16 @@ export default function CampaignForm({submitHandler}) {
 
     return (
         <>
-            <CampaignFormHeader />
+            <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ 
+                    y: 0,
+                    opacity: 100, 
+                    transition: {duration: 0.6,}
+                 }}
+            >
+                <CampaignFormHeader />
+            </motion.div>
             <main className='px-4 py-6 min-w-sm'>
                 <form className='flex flex-col max-w-md gap-3' onSubmit={handleSubmit(onSubmit, onError)}>
                     <InputField
@@ -74,8 +83,8 @@ export default function CampaignForm({submitHandler}) {
                         label={"Campaign Duration (Days)"}
                         isRequired={true}
                         type={'number'}
-                        rules={{min: {value: 1, message: 'Invalid campaign duration'}}}
-                   />
+                        rules={{ min: { value: 1, message: 'Invalid campaign duration' } }}
+                    />
 
                     <button disabled={loading} type="submit" className='btn btn-primary rounded-full'>
                         {loading
